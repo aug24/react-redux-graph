@@ -1,5 +1,15 @@
 # Justin's little app
 
+A little react/redux demo.  Start 'er up, and attempt to click on the red dot.
+
+Observe the statistics build up for you below (this bit's not done yet).
+
+## How to start
+
+`npm start`
+
+## How this project was built:
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
   1. npx create-react-app react-redux-graph
@@ -18,3 +28,4 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
   1. npm install --add typescript
 
 Now rename all the files to .tsx and make all my react/redux changes.
+
