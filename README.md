@@ -15,4 +15,6 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
   1. git add .
   1. git commit -m 'Initial commit'
   1. git push --set-upstream origin master
+  1. npm install --add typescript
 
+Now rename all the files to .tsx and make all my react/redux changes.
