@@ -1,4 +1,5 @@
 import React from 'react';
+import type { State } from './State';
 import { Dispatch } from './App';
 import { connect } from 'react-redux';
 
@@ -14,6 +15,8 @@ export interface PushAction {
 
 interface BoxProps {
   push: (event: BoxEvent) => void;
+  targetX: number;
+  targetY: number;
 }
 
 export class Box extends React.Component<BoxProps> {
@@ -43,9 +46,14 @@ export class Box extends React.Component<BoxProps> {
     }
 };
 
+const mapStateToProps = (state: State) => {return {
+  targetX: state.targetX,
+  targetY: state.targetY,
+}}
+
 const mapDispatchToProps = (dispatch: Dispatch) => {return {
   push: (event: BoxEvent) => dispatch({"type": "push", payload: event })
 }}
 
-export default connect(null, mapDispatchToProps)(Box)
+export default connect(mapStateToProps, mapDispatchToProps)(Box)
 
