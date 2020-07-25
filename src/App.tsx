@@ -10,20 +10,38 @@ import { State } from './State';
 
 type Action = PushAction
 
-function reducers(state: State = {xerrorlist: [], yerrorlist: [], targetX: Math.random() * 500, targetY: Math.random() * 500}, action: Action) {
+function reducers(state: State = 
+  {
+    xerrorlist: [], 
+    yerrorlist: [], 
+    rerrorlist: [], 
+    targetX: Math.random() * 500, 
+    targetY: Math.random() * 500
+  }, 
+  action: Action) {
   switch (action.type) {
     case 'push':
       var xerrorlist=state.xerrorlist;
       var yerrorlist=state.yerrorlist;
+      var rerrorlist=state.rerrorlist;
+
       var box = document.getElementById('box')
       var boxPosition = (box && box.getBoundingClientRect()) || {x: 0, y: 0}
+
       var boxPositionX = boxPosition.x
+      var xerror = state.targetX - (action.payload.clientX - boxPositionX)
+      xerrorlist.push(xerror)
+
       var boxPositionY = boxPosition.y
-      xerrorlist.push(state.targetX - (action.payload.clientX - boxPositionX))
-      yerrorlist.push(state.targetY - (action.payload.clientY - boxPositionY))
+      var yerror = state.targetY - (action.payload.clientY - boxPositionY)
+      yerrorlist.push(yerror)
+
+      var rerror = Math.sqrt(xerror * xerror + yerror * yerror)
+      rerrorlist.push(rerror)
+
       var targetX = Math.random() * 500
       var targetY = Math.random() * 500
-      var newstate = { xerrorlist, yerrorlist, targetX, targetY }
+      var newstate = { xerrorlist, yerrorlist, rerrorlist, targetX, targetY }
       return newstate;
     default:
       return state
