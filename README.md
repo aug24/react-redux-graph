@@ -6,7 +6,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
   1. cd react-redux-graph
   1. rm -rf .git
   1. git init
-  1. git remote add origin "https://github.com/aug24/react-redux-graph.git"
+  1. git remote add origin git@github.com:aug24/react-redux-graph.git
   1. npm install --save @types/react
   1. npm install --add react-redux
   1. npm install --add @types/react-redux
