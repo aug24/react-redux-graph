@@ -30,7 +30,7 @@ export class Box extends React.Component<BoxProps> {
                 <div id="target"
                     style = {{
                         background: "#ff0000",
-                        position: "absolute",
+                        position: "relative",
                         width: 5,
                         height: 5,
                         top: Math.random() * 500,
