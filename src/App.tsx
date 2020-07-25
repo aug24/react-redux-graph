@@ -15,8 +15,12 @@ function reducers(state: State = {xlist: [], ylist: []}, action: Action) {
     case 'push':
         var xlist=state.xlist;
         var ylist=state.ylist;
-        xlist.push(action.payload.clientX)
-        ylist.push(action.payload.clientY)
+        var box = document.getElementById('box')
+        var boxPosition = (box && box.getBoundingClientRect()) || {x: 0, y: 0}
+        var boxPositionX = boxPosition.x
+        var boxPositionY = boxPosition.y
+        xlist.push(action.payload.clientX - boxPositionX)
+        ylist.push(action.payload.clientY - boxPositionY)
       var newstate = { xlist, ylist }
       return newstate;
     default:

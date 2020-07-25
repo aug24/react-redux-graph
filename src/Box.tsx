@@ -19,7 +19,7 @@ interface BoxProps {
 export class Box extends React.Component<BoxProps> {
     render = () => {
         return (
-            <div
+            <div id="box"
                 style = {{
                     background: "#ffffff",
                     width: 500,
