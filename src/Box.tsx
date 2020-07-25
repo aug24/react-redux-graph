@@ -18,13 +18,12 @@ interface BoxProps {
 
 export class Box extends React.Component<BoxProps> {
     render = () => {
-        console.log('Rendering Box');
         return (
             <div
                 style = {{
                     background: "#ffffff",
-                    width: 100,
-                    height: 100
+                    width: 500,
+                    height: 500
                 }}
                 onClick = {(event) => this.props.push(event)}
             >

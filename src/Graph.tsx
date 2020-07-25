@@ -10,31 +10,29 @@ type GraphProps = {
 
 export class Graph extends React.Component<GraphProps> {
     render = () => {
-        console.log("rendering Graph"); 
-        console.log(this.props);
         return (
             <div
                 style = {{
                     background: "#999999",
-                    width: 100,
-                    height: 100
+                    width: 500,
+                    height: 200
                 }}
             >
                 <p> 
-                  x { this.props.xlist && this.props.xlist[0] }
+                  x { this.props.xlist && this.props.xlist[this.props.count-1] }
                   <br/>
-                  y { this.props.ylist }
+                  y { this.props.ylist && this.props.ylist[this.props.count-1] }
                 </p>
             </div>
         );
     }
 };
 
-const mapStateToProps = (state: State) => {var mystate = {
+const mapStateToProps = (state: State) => {return {
   count: state.xlist.length,
   xlist: state.xlist,
   ylist: state.ylist,
-}; console.log(mystate); return mystate;}
+}}
 
 export default connect(mapStateToProps)(Graph)
 
