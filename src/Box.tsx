@@ -36,8 +36,8 @@ export class Box extends React.Component<BoxProps> {
                         position: "relative",
                         width: 5,
                         height: 5,
-                        top: Math.random() * 500,
-                        left: Math.random() * 500
+                        top: this.props.targetY,
+                        left: this.props.targetX
                     }}
                 >
                 </div>

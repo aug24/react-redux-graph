@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 
 type GraphProps = {
     count: number;
-    xlist: number[];
-    ylist: number[];
+    xerrorlist: number[];
+    yerrorlist: number[];
 }
 
 export class Graph extends React.Component<GraphProps> {
@@ -19,9 +19,10 @@ export class Graph extends React.Component<GraphProps> {
                 }}
             >
                 <p> 
-                  x { this.props.xlist && this.props.xlist[this.props.count-1] }
-                  <br/>
-                  y { this.props.ylist && this.props.ylist[this.props.count-1] }
+                  error 
+                  { this.props.xerrorlist.length && Math.trunc(this.props.xerrorlist[this.props.count-1]) }
+                  ,
+                  { this.props.yerrorlist.length && Math.trunc(this.props.yerrorlist[this.props.count-1]) }
                 </p>
             </div>
         );
@@ -29,9 +30,9 @@ export class Graph extends React.Component<GraphProps> {
 };
 
 const mapStateToProps = (state: State) => {return {
-  count: state.xlist.length,
-  xlist: state.xlist,
-  ylist: state.ylist,
+  count: state.xerrorlist.length,
+  xerrorlist: state.xerrorlist,
+  yerrorlist: state.yerrorlist,
 }}
 
 export default connect(mapStateToProps)(Graph)

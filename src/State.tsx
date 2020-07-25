@@ -1,6 +1,6 @@
 export interface State {
-  xlist: number[];
-  ylist: number[];
+  xerrorlist: number[];
+  yerrorlist: number[];
   targetX: number;
   targetY: number;
 }
