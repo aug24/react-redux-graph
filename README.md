@@ -14,5 +14,5 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
   1. rm -rf public
   1. git add .
   1. git commit -m 'Initial commit'
-
+  1. git push --set-upstream origin master
 
