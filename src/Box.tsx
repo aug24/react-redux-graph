@@ -27,7 +27,17 @@ export class Box extends React.Component<BoxProps> {
                 }}
                 onClick = {(event) => this.props.push(event)}
             >
-test
+                <div id="target"
+                    style = {{
+                        background: "#ff0000",
+                        position: "absolute",
+                        width: 5,
+                        height: 5,
+                        top: Math.random() * 500,
+                        left: Math.random() * 500
+                    }}
+                >
+                </div>
             </div>
         );
     }
