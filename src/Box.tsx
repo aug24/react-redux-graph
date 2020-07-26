@@ -37,7 +37,15 @@ export class Box extends React.Component<BoxProps> {
                 >
                 </div>
         } else {
-           target = null;
+           target =
+               <p
+                    style = {{
+                        color: "#ff0000",
+                        margin: "auto"
+                    }}
+               >
+                   Click to start
+               </p>
         }
         return (
             <div id="box"
