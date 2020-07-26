@@ -16,13 +16,19 @@ var initialState: State = {
   rerrorlist: [],
   targetX: Math.random() * 500,
   targetY: Math.random() * 500,
-  start: 0
+  start: 0,
+  maxDelay: 1500
 }
 
 function reducers(state: State = initialState,
   action: Action) {
   switch (action.type) {
     case 'push':
+      var newStart = Date.now();
+      var delay = newStart - state.start;
+      console.log(delay);
+      var fastEnoughToInclude = delay <= state.maxDelay;
+      console.log(fastEnoughToInclude);
       if (state.start>0) {
         var xerrorlist=state.xerrorlist;
         var yerrorlist=state.yerrorlist;
@@ -44,10 +50,10 @@ function reducers(state: State = initialState,
 
         var targetX = Math.random() * 500
         var targetY = Math.random() * 500
-        var newstate = { xerrorlist, yerrorlist, rerrorlist, targetX, targetY, start: Date.now() }
+        var newstate = { ...state, xerrorlist, yerrorlist, rerrorlist, targetX, targetY, start: newStart }
         return newstate;
       } else {
-        return { ...state, start: Date.now()};
+        return { ...state, start: newStart };
       }
     default:
       return state

@@ -5,4 +5,5 @@ export interface State {
   targetX: number;
   targetY: number;
   start: number;
+  maxDelay: number;
 }
