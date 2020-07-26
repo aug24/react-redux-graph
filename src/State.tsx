@@ -4,4 +4,5 @@ export interface State {
   rerrorlist: number[];
   targetX: number;
   targetY: number;
+  start: number;
 }

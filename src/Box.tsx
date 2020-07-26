@@ -17,19 +17,14 @@ interface BoxProps {
   push: (event: BoxEvent) => void;
   targetX: number;
   targetY: number;
+  start: number;
 }
 
 export class Box extends React.Component<BoxProps> {
     render = () => {
-        return (
-            <div id="box"
-                style = {{
-                    background: "#ffffff",
-                    width: 500,
-                    height: 500
-                }}
-                onClick = {(event) => this.props.push(event)}
-            >
+        let target;
+        if (this.props.start>0) {
+            target=
                 <div id="target"
                     style = {{
                         background: "#ff0000",
@@ -41,6 +36,19 @@ export class Box extends React.Component<BoxProps> {
                     }}
                 >
                 </div>
+        } else {
+           target = null;
+        }
+        return (
+            <div id="box"
+                style = {{
+                    background: "#ffffff",
+                    width: 500,
+                    height: 500
+                }}
+                onClick = {(event) => this.props.push(event)}
+            >
+            {target}
             </div>
         );
     }
@@ -49,6 +57,7 @@ export class Box extends React.Component<BoxProps> {
 const mapStateToProps = (state: State) => {return {
   targetX: state.targetX,
   targetY: state.targetY,
+  start: state.start,
 }}
 
 const mapDispatchToProps = (dispatch: Dispatch) => {return {

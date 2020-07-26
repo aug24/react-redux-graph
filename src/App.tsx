@@ -10,39 +10,45 @@ import { State } from './State';
 
 type Action = PushAction
 
-function reducers(state: State = 
-  {
-    xerrorlist: [], 
-    yerrorlist: [], 
-    rerrorlist: [], 
-    targetX: Math.random() * 500, 
-    targetY: Math.random() * 500
-  }, 
+var initialState: State = {
+  xerrorlist: [],
+  yerrorlist: [],
+  rerrorlist: [],
+  targetX: Math.random() * 500,
+  targetY: Math.random() * 500,
+  start: 0
+}
+
+function reducers(state: State = initialState,
   action: Action) {
   switch (action.type) {
     case 'push':
-      var xerrorlist=state.xerrorlist;
-      var yerrorlist=state.yerrorlist;
-      var rerrorlist=state.rerrorlist;
+      if (state.start>0) {
+        var xerrorlist=state.xerrorlist;
+        var yerrorlist=state.yerrorlist;
+        var rerrorlist=state.rerrorlist;
 
-      var box = document.getElementById('box')
-      var boxPosition = (box && box.getBoundingClientRect()) || {x: 0, y: 0}
+        var box = document.getElementById('box')
+        var boxPosition = (box && box.getBoundingClientRect()) || {x: 0, y: 0}
 
-      var boxPositionX = boxPosition.x
-      var xerror = state.targetX - (action.payload.clientX - boxPositionX)
-      xerrorlist.push(xerror)
+        var boxPositionX = boxPosition.x
+        var xerror = state.targetX - (action.payload.clientX - boxPositionX)
+        xerrorlist.push(xerror)
 
-      var boxPositionY = boxPosition.y
-      var yerror = state.targetY - (action.payload.clientY - boxPositionY)
-      yerrorlist.push(yerror)
+        var boxPositionY = boxPosition.y
+        var yerror = state.targetY - (action.payload.clientY - boxPositionY)
+        yerrorlist.push(yerror)
 
-      var rerror = Math.sqrt(xerror * xerror + yerror * yerror)
-      rerrorlist.push(rerror)
+        var rerror = Math.sqrt(xerror * xerror + yerror * yerror)
+        rerrorlist.push(rerror)
 
-      var targetX = Math.random() * 500
-      var targetY = Math.random() * 500
-      var newstate = { xerrorlist, yerrorlist, rerrorlist, targetX, targetY }
-      return newstate;
+        var targetX = Math.random() * 500
+        var targetY = Math.random() * 500
+        var newstate = { xerrorlist, yerrorlist, rerrorlist, targetX, targetY, start: Date.now() }
+        return newstate;
+      } else {
+        return { ...state, start: Date.now()};
+      }
     default:
       return state
   }

@@ -19,8 +19,8 @@ export class Graph extends React.Component<GraphProps> {
                     height: 200
                 }}
             >
-                <p> 
-                  error 
+                <p>
+                  error
                   { this.props.xerrorlist.length && Math.trunc(this.props.xerrorlist[this.props.count-1]) }
                   ,
                   { this.props.yerrorlist.length && Math.trunc(this.props.yerrorlist[this.props.count-1]) }
