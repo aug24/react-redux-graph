@@ -39,14 +39,17 @@ function reducers(state: State = initialState,
 
         var boxPositionX = boxPosition.x
         var xerror = state.targetX - (action.payload.clientX - boxPositionX)
-        xerrorlist.push(xerror)
+        if (fastEnoughToInclude)
+          xerrorlist.push(xerror)
 
         var boxPositionY = boxPosition.y
         var yerror = state.targetY - (action.payload.clientY - boxPositionY)
-        yerrorlist.push(yerror)
+        if (fastEnoughToInclude)
+          yerrorlist.push(yerror)
 
         var rerror = Math.sqrt(xerror * xerror + yerror * yerror)
-        rerrorlist.push(rerror)
+        if (fastEnoughToInclude)
+          rerrorlist.push(rerror)
 
         var targetX = Math.random() * 500
         var targetY = Math.random() * 500
