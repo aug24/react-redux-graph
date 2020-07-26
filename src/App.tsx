@@ -26,9 +26,7 @@ function reducers(state: State = initialState,
     case 'push':
       var newStart = Date.now();
       var delay = newStart - state.start;
-      console.log(delay);
       var fastEnoughToInclude = delay <= state.maxDelay;
-      console.log(fastEnoughToInclude);
       if (state.start>0) {
         var xerrorlist=state.xerrorlist;
         var yerrorlist=state.yerrorlist;
