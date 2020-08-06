@@ -1,6 +1,7 @@
 import React from 'react';
 import type { State } from './State';
 import { connect } from 'react-redux';
+import { LineChart, Line, XAxis } from 'recharts';
 
 type GraphProps = {
     count: number;
@@ -9,8 +10,23 @@ type GraphProps = {
     rerrorlist: number[];
 }
 
+const min = -50
+const max = 50
+const steps = 20
+const stepsize = (max - min) / steps
+
+const restructureData = (input: number[]) => {
+    var result = [];
+    for (let i=0; i<steps; i++) {
+       result.push({ x: input.filter(d => d > min + i * stepsize && d < min + (i+1) * stepsize).length})
+    }
+    return result;
+}
+
 export class Graph extends React.Component<GraphProps> {
     render = () => {
+        var xdata = restructureData(this.props.xerrorlist);
+        var ydata = restructureData(this.props.yerrorlist);
         return (
             <div
                 style = {{
@@ -19,14 +35,34 @@ export class Graph extends React.Component<GraphProps> {
                     height: 200
                 }}
             >
-                <p>
-                  error
-                  { this.props.xerrorlist.length && Math.trunc(this.props.xerrorlist[this.props.count-1]) }
-                  ,
-                  { this.props.yerrorlist.length && Math.trunc(this.props.yerrorlist[this.props.count-1]) }
-                  ,
-                  { this.props.rerrorlist.length && Math.trunc(this.props.rerrorlist[this.props.count-1]) }
-                </p>
+              <LineChart
+                width={500}
+                height={100}
+                data={xdata }
+                margin={{ top: 5, right: 20, left: 10, bottom: 5 }}
+              >
+                <XAxis domain={[min, max]} dataKey="name" />
+                <Line 
+                  animationDuration={1}
+                  type="monotone" 
+                  dataKey="x" 
+                  stroke="#ffffff" 
+                  yAxisId={0} />
+              </LineChart>
+              <LineChart
+                width={500}
+                height={100}
+                data={ydata }
+                margin={{ top: 5, right: 20, left: 10, bottom: 5 }}
+              >
+                <XAxis domain={[min, max]} dataKey="name" />
+                <Line 
+                  animationDuration={1}
+                  type="monotone" 
+                  dataKey="x" 
+                  stroke="#ffffff" 
+                  yAxisId={0} />
+              </LineChart>
             </div>
         );
     }
